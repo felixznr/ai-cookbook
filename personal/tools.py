@@ -1,15 +1,15 @@
 import os
 import json
 
-import requests
+import requests         #Wird importiert um den HTTP Api Request für die Wetterseite zu machen
 from openai import OpenAI
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field       # Wird importiert um die Form für die Antworten zu erstellen das zum beispiel in einem int kein str steht
 
 
 """
 docs: https://platform.openai.com/docs/guides/function-calling
 """
-
+# wir holen uns den API key
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 #Define the tool
@@ -59,6 +59,7 @@ completion = client.chat.completions.create(
 
 
 # 2 Model dicides to call functions
+# Generiert ein dictionary aus der Antwort
 
 completion.model_dump()
 
